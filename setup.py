@@ -78,7 +78,7 @@ setup(
         "pydantic>=2.4.0",
         "pywin32>=223;platform_system=='Windows'",
         "requests>=2.23.0",
-        "typing-extensions>=4.0.1",
+        "typing-extensions>=4.0.1; python_version<'3.11'",
         "websockets>=14.0.0",
         "pyunormalize>=15.0.0",
     ],
