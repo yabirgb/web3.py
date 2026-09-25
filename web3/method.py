@@ -1,3 +1,4 @@
+from collections.abc import Callable, Sequence
 import functools
 from typing import (
     TYPE_CHECKING,
@@ -6,7 +7,6 @@ from typing import (
     cast,
     Generic,
     Optional,
-    Sequence,
 )
 import warnings
 
@@ -246,7 +246,14 @@ class Method(Generic[TFunc]):
 
     def process_params(
         self, module: "Module", *args: Any, **kwargs: Any
-    ) -> tuple[tuple[RPCEndpoint, tuple[Any, ...]], ResponseFormatters]:
+    ) -> tuple[
+        tuple[RPCEndpoint, tuple[Any, ...]],
+        tuple[
+            Any,
+            Callable[..., Any],
+            Any,
+        ],
+    ]:
         params = self.input_munger(module, args, kwargs)
 
         if self.method_choice_depends_on_args:
